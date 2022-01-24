@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.1.0'
+}
+
+group 'fr.arinonia'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    shade
+    implementation.extendsFrom shade
+}
+
+shadowJar {
+    configurations = [project.configurations.shade]
+}
+
+dependencies {
+    shade  fileTree("/libs")
+    shade 'com.google.code.gson:gson:2.8.9'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'fr.arinonia.bootstrap.Main'
+    }
+}
+
+compileJava.options.encoding = "UTF-8"
