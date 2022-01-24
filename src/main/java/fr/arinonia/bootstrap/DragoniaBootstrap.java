@@ -55,7 +55,7 @@ public class DragoniaBootstrap implements DownloadListener {
         this.bootstrap.getDownloadLabel().setFont(this.bootstrap.getDownloadLabel().getFont().deriveFont(16.0F));
         this.fileManager.setupFiles();
 
-        if (Util.checkJavaVersion("1.8")) {
+        if (!Util.checkJavaVersion("1.8")) {
             final DownloadJob javaJob = new DownloadJob("de Java", this);
             final DownloadManager javaManager = new DownloadManager(Constants.JAVA_DOWNLOAD_URL + OperatingSystem.getCurrentPlatform().getName() + "/instance.json",
                     javaJob, this.fileManager.getJavaDir());
